@@ -2,8 +2,6 @@
 
 This is a fork of MailToJson, that is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE) by [Newsman App - Smart Email Service Provider](https://www.newsmanapp.com).
 
-Quick script to parse incoming mail and do a post with the content as JSON data.
-
 ## How to use
 
 The MailJson class will try to figure out which datatype it is initialized with, and do the correct conversion based
