@@ -1,21 +1,24 @@
-# MailToJson
+# MailJson
+
+This is a fork of MailToJson, that is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE) by [Newsman App - Smart Email Service Provider](https://www.newsmanapp.com).
 
 Quick script to parse incoming mail and do a post with the content as JSON data.
 
 ## How to use
 
-The work flow is quite simple. The script reads the mail mime message from STDIN, parses
-the data and makes a POST call with RAW JSON to the url (passed as command line argument).
+The MailJson class will try to figure out which datatype it is initialized with, and do the correct conversion based
+that. The plan is that both the JSON-data and the message as an email.message.Message-object will be available through
+this class.
 
-Example usage (command line):
-```bash
-cat mail.eml | python mailtojson.py -u http://internal.dev.newsman.ro/autoreply/handle.php
+NOTE: The conversion from JSON to email is not yet done.
+
+Example usage:
+```python
+from MailJson import MailJson
+m = <email.message.Message object>
+mj = MailJson(m)
 ```
 
-Example usage (postfix aliases):
-```bash
-mailtojson_autoreply: "|/nethosting/mailtojson/mailtojson.py -u http://internal.dev.newsman.ro/autoreply/handle.php"
-```
 
 ## JSON Format
 
@@ -43,19 +46,8 @@ json:
     - { filename": "invoice2.pdf", content_type: "application/pdf", content: "base64 of binary data" }
 ```
 
-### Handling JSON data in PHP
-
-Here is a quick example of how to parse the JSON data posted by the mail to json script:
-
-```php
-<?php
-
-$json_str  = file_get_contents("php://input");
-$json_data = json_decode($json_str, true);
-
-var_dump($json_data);
-?>
-```
+# History
+2015-11-19: Forked MailToJson, renamed MailToJson to MailJson and added my changes.
 
 # License
 
