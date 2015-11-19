@@ -4,11 +4,9 @@ This is a fork of MailToJson, that is released under [MIT license](https://githu
 
 ## How to use
 
-The MailJson class will try to figure out which datatype it is initialized with, and do the correct conversion based
-that. The plan is that both the JSON-data and the message as an email.message.Message-object will be available through
-this class.
+The MailJson class will try to figure out which datatype it is initialized with, and do the correct conversion based that. The plan is that both the JSON-data and the message as an email.message.Message-object will be available through this class.
 
-NOTE: The conversion from JSON to email is not yet done.
+**NOTE**: The conversion from JSON to an email-object is not yet done.
 
 Example usage:
 ```python
@@ -49,4 +47,4 @@ json:
 
 # License
 
-This code is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE) by [Newsman App - Smart Email Service Provider](https://www.newsmanapp.com).
+This code is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE)
