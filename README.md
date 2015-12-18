@@ -13,6 +13,16 @@ Example usage:
 from MailJson import MailJson
 m = <email.message.Message object>
 mj = MailJson(m)
+data = mj.parse_mail()
+```
+
+```python
+from MailJson import MailJson
+m = <email.message.Message object>
+mj = MailJson(m)
+headers = ("subject", "from", "to", "date", "message-id", "date")
+mj.set_filters(include_parts=False, include_attachments=False, include_headers=headers)
+data = mj.parse_mail()
 ```
 
 
@@ -44,6 +54,7 @@ json:
 
 # History
 2015-11-19: Forked MailToJson, renamed MailToJson to MailJson and added my changes.
+2015-12-18: Added python2.7 compatibility. Added filters. Fixed double encoding.
 
 # License
 
