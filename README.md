@@ -53,7 +53,9 @@ json:
 ```
 
 # History
+
 2015-11-19: Forked MailToJson, renamed MailToJson to MailJson and added my changes.
+
 2015-12-18: Added python2.7 compatibility. Added filters. Fixed double encoding.
 
 # License
