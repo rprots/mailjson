@@ -58,6 +58,8 @@ json:
 
 2015-12-18: Added python2.7 compatibility. Added filters. Fixed double encoding.
 
+2015-12-21: Added setup.py.
+
 # License
 
 This code is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE)
