@@ -39,11 +39,11 @@ json:
   from:
     - { name: "Sender Name", email: "sender@email.com" }
   to:
-    - { name: "Recipient Name", email: "recpient@email.com" }
-    - { name: "Recipient Name 2", email: "recpient2@email.com" }
+    - { name: "Recipient Name", email: "recipient@email.com" }
+    - { name: "Recipient Name 2", email: "recipient2@email.com" }
   cc:
-    - { name: "Recipient Name", email: "recpient@email.com" }
-    - { name: "Recipient Name 2", email: "recpient2@email.com" }
+    - { name: "Recipient Name", email: "recipient@email.com" }
+    - { name: "Recipient Name 2", email: "recipient2@email.com" }
   parts:
     - { content_type: "text/plain", content: "body of this part", "headers": { "header_key1": value, "header_key2": value } }
     - { content_type: "text/html", content: "body of this part", "headers": { "header_key1": value, "header_key2": value } }
