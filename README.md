@@ -21,7 +21,9 @@ from MailJson import MailJson
 m = <email.message.Message object>
 mj = MailJson(m)
 headers = ("subject", "from", "to", "date", "message-id", "date")
-mj.set_filters(include_parts=False, include_attachments=False, include_headers=headers)
+mj.include_headers=headers     # In case you are only interested in specific headers, not all.
+mj.include_parts=False         # In case you are not interested in parsing mail parts.
+mj.include_attachments=False   # In case you are not interested in parsing attachments.
 data = mj.parse_mail()
 ```
 
@@ -59,6 +61,8 @@ json:
 2015-12-18: Added python2.7 compatibility. Added filters. Fixed double encoding.
 
 2015-12-21: Added setup.py.
+
+2015-12-22: Re-factored filters.
 
 # License
 

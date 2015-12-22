@@ -14,7 +14,7 @@ Operating System :: Unix
 """
 
 setup(name='mailjson',
-      version='0.1',
+      version='0.1.0',
       description='Mail to JSON converter',
       author='vitush',
       author_email='vitush.dev@gmail.com',

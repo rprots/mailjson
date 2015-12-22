@@ -77,9 +77,9 @@ class MailJson(object):
     def __init__(self, d):
         self.encoding = "utf-8"
         self.raw_parts = []
-        self._filter_include_headers = ()
-        self._filter_include_parts = True
-        self._filter_include_attachents = True
+        self.include_headers = ()
+        self.include_parts = True
+        self.include_attachents = True
 
         if isinstance(d, email.message.Message):
             self.mail = d
@@ -248,7 +248,7 @@ class MailJson(object):
 
     def parse_mail(self, msg):
 
-        headers = self._get_part_headers(msg, include_headers=self._filter_include_headers)
+        headers = self._get_part_headers(msg, include_headers=self.include_headers)
         self.json_data["headers"] = headers
         self.json_data["datetime"] = self._parse_date(headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
         self.json_data["subject"] = self._fix_encoded_subject(headers.get("subject", None))
@@ -265,7 +265,7 @@ class MailJson(object):
             content_disposition = part.get("Content-Disposition", None)
             if content_disposition:
                 # we have attachment
-                if self._filter_include_attachents:
+                if self.include_attachents:
                     r = filename_re.findall(content_disposition)
                     if r:
                         filename = sorted(r[0])[1]
@@ -277,7 +277,7 @@ class MailJson(object):
                          "content_type": part.get_content_type()}
                     attachments.append(a)
             else:
-                if self._filter_include_parts:
+                if self.include_parts:
                     try:
                         p = {"content_type": part.get_content_type(),
                              "content": unicode(part.get_payload(decode=1),
@@ -290,17 +290,10 @@ class MailJson(object):
                         # Sometimes an encoding isn't recognised - not much to be done
                         pass
 
-        if self._filter_include_attachents:
+        if self.include_attachents:
             self.json_data["attachments"] = attachments
-        if self._filter_include_parts:
+        if self.include_parts:
             self.json_data["parts"] = parts
         self.json_data["encoding"] = self.encoding
 
         return self.json_data
-
-    def set_filters(self, include_headers=(),
-                    include_parts=True, include_attachments=True):
-        """ If we are not interested in all mail data we can set filters to optimize parsing."""
-        self._filter_include_headers = include_headers
-        self._filter_include_attachents = include_attachments
-        self._filter_include_parts = include_parts
