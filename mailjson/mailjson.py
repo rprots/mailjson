@@ -195,8 +195,8 @@ class MailJson(object):
         v_list = email_header.decode_header(header)
         if len(v_list) == 2:
             # User name and Email already split.
-            name = v_list[0][0]
-            address = str(v_list[1][0])
+            name = str(v_list[0][0].strip())
+            address = str(v_list[1][0].strip())
             address = address.replace("<", "").replace(">", "").strip()
             return (name, address)
         else:
