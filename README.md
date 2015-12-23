@@ -64,6 +64,8 @@ json:
 
 2015-12-22: Re-factored filters. Renamed variables to achieve PEP8.
 
+2015-12-23: Fixed encoding parsing in "From", "To", "Cc".
+
 # License
 
 This code is released under [MIT license](https://github.com/Newsman/MailToJson/blob/master/LICENSE)
