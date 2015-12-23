@@ -1,6 +1,9 @@
+"""Mail to JSON converter."""
 # ---------------------------------------------------------------------
 #  (c) 2013 Newsman App, https://github.com/Newsman/MailToJson
 #  (c) 2015 Mike Andersen, mike@geekpod.net
+#  (c) 2015 Andriy Vitushynskyy, vitush.dev@gmail.com
+#
 #  This code is released under MIT license.
 # ---------------------------------------------------------------------
 
@@ -18,13 +21,13 @@ from io import StringIO
 if sys.version_info < (3,):
     from email import Header as email_header
 
-    def csv_next(c):
-        return c.next()
+    def csv_next(csv_obj):
+        return csv_obj.next()
 
-    def decode_value(hv, encoding):
+    def decode_value(value, encoding):
         encoding = encoding.lower() if encoding else "ascii"
-        hv = unicode(hv, encoding).strip().strip("\t")
-        return hv.encode(encoding)
+        value = unicode(value, encoding).strip().strip("\t")
+        return value.encode(encoding)
 
     def get_encoding(string):
         encoding = chardet.detect(string)
@@ -33,18 +36,18 @@ if sys.version_info < (3,):
 else:
     from email import header as email_header
 
-    def unicode(v, encoding='utf-8', errors='strict'):
-        return str(v, encoding, errors)
+    def unicode(value, encoding='utf-8', errors='strict'):
+        return str(value, encoding, errors)
 
-    def csv_next(c):
-        return c.__next__()
+    def csv_next(csv_obj):
+        return csv_obj.__next__()
 
-    def decode_value(hv, encoding):
-        if get_encoding(hv) == encoding:
+    def decode_value(value, encoding):
+        if get_encoding(value) == encoding:
             # Do not encode second time.
-            return hv
-        hv = str(hv).strip().strip("\t")
-        return hv.encode(encoding)
+            return value
+        value = str(value).strip().strip("\t")
+        return value.encode(encoding)
 
     def get_encoding(string):
         if isinstance(string, str):
@@ -55,20 +58,28 @@ else:
 
 ###########################################################################
 
-# regular expresion from https://github.com/django/django/blob/master/django/core/validators.py
+# Regular expression from
+#  https://github.com/django/django/blob/master/django/core/validators.py
 
-email_re = re.compile(
-    r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"  # dot-atom
+EMAIL_RE = re.compile(
+    # dot-atom
+    r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"
     # quoted-string, see also http://tools.ietf.org/html/rfc2822#section-3.2.5
-    r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]|\\[\001-\011\013\014\016-\177])*"'
-    r')@((?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)'  # domain
-    r'|\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$', re.IGNORECASE)
+    r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]'
+        r'|\\[\001-\011\013\014\016-\177])*"'
+    # domain part
+    r')@((?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+'
+        r'(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)'
+    r'|\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)'
+        r'(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$', re.IGNORECASE)
 
-email_extract_re = re.compile(r"<(([.0-9a-z_+-=]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,9}))>", re.M | re.S | re.I)
-filename_re = re.compile(r"filename=\"(.+)\"|filename=([^;\n\r\"\']+)", re.I | re.S)
+EMAIL_EXTRACT_RE = re.compile(
+    r"<(([.0-9a-z_+-=]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,9}))>", re.M | re.S | re.I)
+FILENAME_RE = re.compile(
+    r"filename=\"(.+)\"|filename=([^;\n\r\"\']+)", re.I | re.S)
 
-begin_tab_re = re.compile(r"^\t+", re.M)
-begin_space_re = re.compile(r"^\s+", re.M)
+BEGIN_TAB_RE = re.compile(r"^\t+", re.M)
+BEGIN_SPACE_RE = re.compile(r"^\s+", re.M)
 
 
 class MailJson(object):
@@ -85,53 +96,55 @@ class MailJson(object):
             self.mail = d
             self.json_data = {}
         elif type(d) is dict:
-            raise NotImplementedError('Conversion from JSON to mail, is not yet implemented')
+            raise NotImplementedError('Conversion from JSON to mail,'
+                                      ' is not yet implemented')
             # TODO: Convert json to email.message.Message object
         else:
             raise TypeError('Unknown data-type passed')
 
-    def _decode_headers(self, v):
-        if type(v) is not list:
-            v = [v]
+    def _decode_headers(self, headers):
+        if type(headers) is not list:
+            headers = [headers]
 
         ret = []
-        for h in v:
-            h = email_header.decode_header(h)
+        for header in headers:
+            header = email_header.decode_header(header)
             h_ret = []
-            for h_decoded in h:
-                hv = h_decoded[0]
-                decoded_hv = decode_value(hv, self.encoding)
+            for h_decoded in header:
+                header_value = h_decoded[0]
+                decoded_hv = decode_value(header_value, self.encoding)
                 h_ret.append(decoded_hv)
             if len(h_ret) == 1:
                 h_ret = h_ret[0]
             ret.append(h_ret)
         return ret
 
-    def _get_part_headers(self, part, include_headers=()):
+    def _get_part_headers(self, part):
         # raw headers
         headers = {}
-        for k in part.keys():
-            if include_headers and not k.lower() in include_headers:
+        for h_key in part.keys():
+            if self.include_headers and \
+                not h_key.lower() in self.include_headers:
                 continue
-            k = k.lower()
-            v = part.get_all(k)
-            v = self._decode_headers(v)
+            h_key = h_key.lower()
+            h_value_list = part.get_all(h_key)
+            h_value_list = self._decode_headers(h_value_list)
 
-            if len(v) == 1:
-                headers[k] = v[0]
+            if len(h_value_list) == 1:
+                headers[h_key] = h_value_list[0]
             else:
-                headers[k] = v
+                headers[h_key] = h_value_list
         return headers
 
     @staticmethod
-    def _parse_date(v):
-        if v is None:
+    def _parse_date(string):
+        if string is None:
             return datetime.datetime.now()
-        v = unicode(v, 'ascii')
-        tt = email.utils.parsedate_tz(v)
-        if tt is None:
+        string = unicode(string, 'ascii')
+        time_tuple = email.utils.parsedate_tz(string)
+        if time_tuple is None:
             return datetime.datetime.now()
-        timestamp = email.utils.mktime_tz(tt)
+        timestamp = email.utils.mktime_tz(time_tuple)
         date = datetime.datetime.fromtimestamp(timestamp)
         return date
 
@@ -153,65 +166,64 @@ class MailJson(object):
             return subject
 
         subject = subject.replace("\r", "")
-        subject = begin_tab_re.sub("", subject)
-        subject = begin_space_re.sub("", subject)
+        subject = BEGIN_TAB_RE.sub("", subject)
+        subject = BEGIN_SPACE_RE.sub("", subject)
         lines = subject.split("\n")
 
         new_subject = ""
-        for l in lines:
-            new_subject = "%s%s" % (new_subject, l)
-            if l[-1] == "=":
+        for line in lines:
+            new_subject = "%s%s" % (new_subject, line)
+            if line[-1] == "=":
                 new_subject = "%s\n " % new_subject
         return new_subject
 
     @staticmethod
-    def _extract_email(s):
-        ret = email_extract_re.findall(s)
+    def _extract_email(string):
+        ret = EMAIL_EXTRACT_RE.findall(string)
         if len(ret) < 1:
-            p = s.split(" ")
-            for e in p:
-                e = e.strip()
-                if email_re.match(e):
-                    return e
+            parts = string.split(" ")
+            for email_part in parts:
+                email_part = email_part.strip()
+                if EMAIL_RE.match(email_part):
+                    return email_part
             return None
         else:
             return ret[0][0]
 
-    def _parse_recipients(self, v):
-        if v is None:
+    def _parse_recipients(self, value):
+        if value is None:
             return None
         ret = []
 
         # Sometimes a list is passed, which breaks .replace()
-        if isinstance(v, list):
-            v = b",".join(v)
-        v = unicode(v, 'UTF8')
-        v = v.replace("\n", " ").replace("\r", " ").strip()
-        s = StringIO(v)
-        c = csv.reader(s)
+        if isinstance(value, list):
+            value = b",".join(value)
+        value = unicode(value, 'UTF8')
+        value = value.replace("\n", " ").replace("\r", " ").strip()
+        csv_obj = csv.reader(StringIO(value))
         try:
-            row = csv_next(c)
+            row = csv_next(csv_obj)
         except StopIteration:
             return ret
 
         for entry in row:
             entry = entry.strip()
-            if email_re.match(entry):
-                e = entry
+            if EMAIL_RE.match(entry):
+                address = entry
                 entry = ""
             else:
-                e = self._extract_email(entry)
-                entry = entry.replace("<%s>" % e, "")
+                address = self._extract_email(entry)
+                entry = entry.replace("<%s>" % address, "")
                 entry = entry.strip()
-                if e and entry.find(e) != -1:
-                    entry = entry.replace(e, "").strip()
+                if address and entry.find(address) != -1:
+                    entry = entry.replace(address, "").strip()
             # If all else has failed
-            if entry and e is None:
+            if entry and address is None:
                 e_split = entry.split(" ")
-                e = e_split[-1].replace("<", "").replace(">", "")
+                address = e_split[-1].replace("<", "").replace(">", "")
                 entry = " ".join(e_split[:-1])
 
-            ret.append({"name": entry, "email": e})
+            ret.append({"name": entry, "email": address})
         return ret
 
     @staticmethod
@@ -247,14 +259,20 @@ class MailJson(object):
         return charset.lower()
 
     def parse_mail(self, msg):
+        """Parse mail"""
 
-        headers = self._get_part_headers(msg, include_headers=self.include_headers)
+        headers = self._get_part_headers(msg)
         self.json_data["headers"] = headers
-        self.json_data["datetime"] = self._parse_date(headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
-        self.json_data["subject"] = self._fix_encoded_subject(headers.get("subject", None))
-        self.json_data["to"] = self._parse_recipients(headers.get("to", None))
-        self.json_data["from"] = self._parse_recipients(headers.get("from", None))
-        self.json_data["cc"] = self._parse_recipients(headers.get("cc", None))
+        self.json_data["datetime"] = self._parse_date(
+                headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
+        self.json_data["subject"] = self._fix_encoded_subject(
+                headers.get("subject", None))
+        self.json_data["to"] = self._parse_recipients(
+                headers.get("to", None))
+        self.json_data["from"] = self._parse_recipients(
+                headers.get("from", None))
+        self.json_data["cc"] = self._parse_recipients(
+                headers.get("cc", None))
 
         attachments = []
         parts = []
@@ -266,28 +284,34 @@ class MailJson(object):
             if content_disposition:
                 # we have attachment
                 if self.include_attachents:
-                    r = filename_re.findall(content_disposition)
-                    if r:
-                        filename = sorted(r[0])[1]
+                    found = FILENAME_RE.findall(content_disposition)
+                    if found:
+                        filename = sorted(found[0])[1]
                     else:
                         filename = "undefined"
 
-                    a = {"filename": filename,
-                         "content": base64.b64encode(part.get_payload(decode=True)),
-                         "content_type": part.get_content_type()}
-                    attachments.append(a)
+                    attach = {"filename": filename,
+                              "content": base64.b64encode(
+                                        part.get_payload(decode=True)),
+                              "content_type": part.get_content_type()}
+                    attachments.append(attach)
             else:
                 if self.include_parts:
                     try:
-                        p = {"content_type": part.get_content_type(),
-                             "content": unicode(part.get_payload(decode=1),
-                                            self._get_content_charset(part, "utf-8").decode(),
-                                            "ignore").encode(self.encoding),
+                        charset = self._get_content_charset(
+                                        part, "utf-8").decode()
+                        parsed_part = {"content_type": part.get_content_type(),
+                                       "content": unicode(
+                                                    part.get_payload(decode=1),
+                                                    charset,
+                                                    "ignore"
+                                                    ).encode(self.encoding),
                              "headers": self._get_part_headers(part)}
-                        parts.append(p)
+                        parts.append(parsed_part)
                         self.raw_parts.append(part)
                     except LookupError:
-                        # Sometimes an encoding isn't recognised - not much to be done
+                        # Sometimes an encoding isn't recognized.
+                        # Not much to be done.
                         pass
 
         if self.include_attachents:

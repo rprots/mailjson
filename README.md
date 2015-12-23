@@ -62,7 +62,7 @@ json:
 
 2015-12-21: Added setup.py.
 
-2015-12-22: Re-factored filters.
+2015-12-22: Re-factored filters. Renamed variables to achieve PEP8.
 
 # License
 
