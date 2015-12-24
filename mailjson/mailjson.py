@@ -74,15 +74,16 @@ class MailJson(object):
 
     def __init__(self, data=None):
         self.encoding = "utf-8"
-        self.raw_parts = []
         self.include_headers = ()
         self.include_parts = True
-        self.include_attachents = True
+        self.include_attachments = True
+
+        self.json_data = {}
+        self.raw_parts = []
 
         if data:
             if isinstance(data, email.message.Message):
                 self.mail = data
-                self.json_data = {}
             elif type(data) is dict:
                 raise NotImplementedError('Conversion from JSON to mail,'
                                           ' is not yet implemented')
@@ -218,10 +219,11 @@ class MailJson(object):
 
             #Remove " and ' around name.
             name = entry.replace('"', '').replace("'", "").strip()
-            address = self._extract_email(address).strip()
-            #name = entry
+            address = self._extract_email(address)
+            if address:
+                address = address.strip()
+
             return (name, address)
-        return (None, None)
 
     def _parse_recipients(self, header):
         """Parse header and find all recipients"""
@@ -266,10 +268,10 @@ class MailJson(object):
         # RFC 2046, $4.1.2 says charsets are not case sensitive
         return charset.lower()
 
-    def parse_mail(self, msg):
+    def parse_mail(self):
         """Parse mail"""
 
-        headers = self._get_part_headers(msg)
+        headers = self._get_part_headers(self.mail)
         self.json_data["headers"] = headers
         self.json_data["datetime"] = self._parse_date(
                 headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
@@ -283,14 +285,14 @@ class MailJson(object):
 
         attachments = []
         parts = []
-        for part in msg.walk():
+        for part in self.mail.walk():
             if part.is_multipart():
                 continue
 
             content_disposition = part.get("Content-Disposition", None)
             if content_disposition:
                 # We have attachment
-                if not self.include_attachents:
+                if not self.include_attachments:
                     # We are not interested in parsed attachments.
                     continue
                 found = FILENAME_RE.findall(content_disposition)
@@ -323,7 +325,7 @@ class MailJson(object):
                     # Not much to be done.
                     pass
 
-        if self.include_attachents:
+        if self.include_attachments:
             self.json_data["attachments"] = attachments
         if self.include_parts:
             self.json_data["parts"] = parts

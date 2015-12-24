@@ -56,15 +56,20 @@ json:
 
 # History
 
-2015-11-19: Forked MailToJson, renamed MailToJson to MailJson and added my changes.
+Version 0.1.1:
 
-2015-12-18: Added python2.7 compatibility. Added filters. Fixed double encoding.
+- 2015-12-24: Added tests.
 
-2015-12-21: Added setup.py.
+Version 0.1.0:
 
-2015-12-22: Re-factored filters. Renamed variables to achieve PEP8.
-
-2015-12-23: Fixed encoding parsing in "From", "To", "Cc".
+- 2015-12-23: Fixed encoding parsing in "From", "To", "Cc".
+- 2015-12-22: Renamed variables to achieve PEP8.
+- 2015-12-22: Re-factored filters.
+- 2015-12-21: Added setup.py.
+- 2015-12-18: Added python2.7 compatibility.
+- 2015-12-18: Added filters.
+- 2015-12-18: Fixed double encoding.
+- 2015-12-18: Forked from https://github.com/eigir/MailJson
 
 # License
 

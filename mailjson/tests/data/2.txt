@@ -1,0 +1,316 @@
+Delivered-To: vitush.dev@gmail.com
+Received: by 10.28.50.201 with SMTP id y192csp3339491wmy;
+        Tue, 22 Dec 2015 10:05:14 -0800 (PST)
+X-Received: by 10.107.134.65 with SMTP id i62mr21382019iod.171.1450807514490;
+        Tue, 22 Dec 2015 10:05:14 -0800 (PST)
+Received: from mail-ig0-x22b.google.com (mail-ig0-x22b.google.com. [2607:f8b0:4001:c05::22b])
+        by mx.google.com with ESMTPS id e12si19451621iod.102.2015.12.22.10.05.14
+        for <vitush.dev@gmail.com>
+        (version=TLS1_2 cipher=ECDHE-RSA-AES128-GCM-SHA256 bits=128/128);
+        Tue, 22 Dec 2015 10:05:14 -0800 (PST)
+Received: by mail-ig0-x22b.google.com with SMTP id m11so53568349igk.1
+        for <vitush.dev@gmail.com>; Tue, 22 Dec 2015 10:05:14 -0800 (PST)
+X-Received: by 10.50.117.33 with SMTP id kb1mr26549674igb.89.1450807514147;
+        Tue, 22 Dec 2015 10:05:14 -0800 (PST)
+Delivered-To: vitush.dev@gmail.com
+Received: by 10.107.134.220 with SMTP id q89csp3177058ioi;
+        Tue, 22 Dec 2015 10:05:13 -0800 (PST)
+X-Received: by 10.28.148.140 with SMTP id w134mr30166822wmd.66.1450807513046;
+        Tue, 22 Dec 2015 10:05:13 -0800 (PST)
+Return-Path: <el.9cad54fc6d86a1c4e926e503f1314489.1.hugonsolutions.smtp@mail.emaillabs.net.pl>
+Received-SPF: pass (google.com: domain of el.9cad54fc6d86a1c4e926e503f1314489.1.hugonsolutions.smtp@mail.emaillabs.net.pl designates 185.70.38.12 as permitted sender) client-ip=185.70.38.12;
+DKIM-Signature: v=1; a=rsa-sha1; c=relaxed/relaxed; d=mail.emaillabs.net.pl;
+    s=emaillabs; t=1450807512; bh=WeSsyQLa1DRdw/J2LesOFVvH2J4=;
+    h=Date:To:Reply-To:From:Subject;
+    b=BaclcqbLU0UvlAUfwqLAOSnP9UWHeteV+eqJVgVjty7tguouxEH1YZCDpeQPZYHLX
+     nSpCq0tfkHwO4v88buyhJgVwjtNcUtQLGQb8JWKg+mvo7g8Ky+Ltf/FMRa0IEKmfsg
+     ed+CqBEs0Duwfbq6yUj3SkB0y/hu4w1zQKmWb8zw=
+Date: Tue, 22 Dec 2015 19:04:35 +0100
+To: <vitush.dev@gmail.com>
+Reply-To: =?utf-8?B?cGxheS5wbA==?= <administrator-phorum@phorum.pl>
+From: =?utf-8?B?cGxheS5wbA==?= <ssphugonsolutions@gmail.com>
+Subject: =?UTF-8?B?U3ByYXdkxbogb2ZlcnR5LCBrdMOzcmUgZGxhIENpZWJpZSBwcnp5Z290b3dhbGnFm215IQ==?=
+Message-ID: <9d50fab82801fb958c2655125a361c34@localhost.localdomain>
+X-Priority: 3
+X-Mailer: Open Email SSP 1.2.5
+X-SSP: 1daea77871e03c0ad5192bcf131e54cd
+X-SSP-Mb: 2
+X-SSP-C: e47d35f494a0a785ac57b2f2d588c4bb
+MIME-Version: 1.0
+'Content-Type: text/plain; charset=utf-8'
+Content-Type: multipart/alternative; boundary=b1_9d50fab82801fb958c2655125a361c34
+
+--b1_9d50fab82801fb958c2655125a361c34
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+play
+
+--b1_9d50fab82801fb958c2655125a361c34
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.=
+w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+
+    <meta http-equiv=3D"Content-Type" content=3D"text/html; charset=3Dutf-8=
+" />
+    <meta name=3D"Language" content=3D"pl" />
+    <title>Play</title>
+    <style>
+        .preheader { display:none !important; visibility:hidden; opacity:0;=
+ color:transparent; height:0; width:0; }
+    </style>
+</head>
+<body bgcolor=3D"#FFFFFF" leftmargin=3D"0" topmargin=3D"0" marginwidth=3D"0=
+" marginheight=3D"0">
+<span class=3D"preheader" style=3D"display: none !important; visibility: hi=
+dden; opacity: 0; color: transparent; height: 0; width: 0;">Sprawd=C5=BA of=
+erty, kt=C3=B3re dla Ciebie przygotowali=C5=9Bmy.</span>
+<center>
+<table id=3D"Table_01" width=3D"600" border=3D"0" cellpadding=3D"0" cellspa=
+cing=3D"0">
+    <tr>
+        <td colspan=3D"3">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPXxPV1ExTUdaaFlqZ3lPREF4Wm1JNU5UaGpNalkxTlRFeU5XRXpOakZqTXpSQWJ=
+HOWpZV3hvYjNOMExteHZZMkZzWkc5dFlXbHVmRlIxWlN3Z01qSWdSR1ZqSURJd01UVWdNVGs2TU=
+RRNk16VWdLekF4TURCOFlYWnBkSFZ6YUhsdWMydDVhVUJuYldGcGJDNWpiMjE4TVM1b2RXZHZib=
+k52YkhWMGFXOXVjeTV6YlhSdw%3D%3D" style=3D"float:left"><img id=3D"remintrex_=
+01" src=3D"http://api.behavioralmailing.com/creations/42785176860/remintrex=
+_01.png" width=3D"600" height=3D"66" alt=3D"" border=3D"0" style=3D"float:l=
+eft;"></a></td>
+    </tr>
+    <tr>
+        <td colspan=3D"3" width=3D"600" height=3D"76">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPXxPV1ExTUdaaFlqZ3lPREF4Wm1JNU5UaGpNalkxTlRFeU5XRXpOakZqTXpSQWJ=
+HOWpZV3hvYjNOMExteHZZMkZzWkc5dFlXbHVmRlIxWlN3Z01qSWdSR1ZqSURJd01UVWdNVGs2TU=
+RRNk16VWdLekF4TURCOFlYWnBkSFZ6YUhsdWMydDVhVUJuYldGcGJDNWpiMjE4TVM1b2RXZHZib=
+k52YkhWMGFXOXVjeTV6YlhSdw%3D%3D" style=3D"float:left;text-decoration: none;=
+color:#000;">
+                <span style=3D"margin-top:10px;font-size: 22px;color:#5a398=
+a;font-family: Arial;text-decoration: none;float: left;"><b>Najlepsze smart=
+phony w super cenie! </b></span>
+
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td rowspan=3D"2" width=3D"119" height=3D"199" style=3D"border-bottom:1px=
+ solid #ccc">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1CTCUzRm9mZmVyJTNENDAwMDUxMTY2OSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left"><img src=3D"http:/=
+/nowy.play.pl/medias/sys_master/images/h8e/h5f/8803447537694.png" width=3D"=
+90"  alt=3D"" border=3D"0" style=3D"float:left;"></a></td>
+        <td colspan=3D"2" width=3D"481" height=3D"127">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1CTCUzRm9mZmVyJTNENDAwMDUxMTY2OSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left;text-decoration: no=
+ne;color:#000;">
+                <span style=3D"margin-left:13px;margin-top:8px;font-size: 3=
+2px;color:#5a398a;font-family: Arial;text-decoration: none;float: left;font=
+-weight:bold;">Garmin Forerunner 220 HRM<br>za 74.99 z=C5=82</span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td width=3D"303" height=3D"72" style=3D"border-bottom:1px solid #ccc; fo=
+nt-size: 15px; color:#333;font-family: Arial;">
+            FORMU=C5=81A SMARTFON Unlimited
+        </td>
+        <td width=3D"179" height=3D"72" style=3D"border-bottom:1px solid #ccc">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1CTCUzRm9mZmVyJTNENDAwMDUxMTY2OSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left"><img src=3D"http:/=
+/api.behavioralmailing.com/creations/42785176860/remintrex_btn.png"  alt=3D=
+"" border=3D"0" style=3D"float:left;"></a></td>
+    </tr>
+    <tr>
+        <td rowspan=3D"2" width=3D"119" height=3D"199" style=3D"border-bottom:1px=
+ solid #ccc">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1QVSUzRm9mZmVyJTNENDAwMDYzODIwOSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left"><img src=3D"http:/=
+/nowy.play.pl/medias/sys_master/images/h8a/h95/8809095462942.png" width=3D"=
+90"  alt=3D"" border=3D"0" style=3D"float:left;"></a></td>
+        <td colspan=3D"2" width=3D"481" height=3D"127">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1QVSUzRm9mZmVyJTNENDAwMDYzODIwOSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left;text-decoration: no=
+ne;color:#000;">
+                <span style=3D"margin-left:13px;margin-top:8px;font-size: 3=
+2px;color:#5a398a;font-family: Arial;text-decoration: none;float: left;font=
+-weight:bold;">Garmin Forerunner 220 HRM<br>za 74.99 z=C5=82</span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td width=3D"303" height=3D"72" style=3D"border-bottom:1px solid #ccc; fo=
+nt-size: 15px; color:#333;font-family: Arial;">
+            FORMU=C5=81A SMARTFON UNLIMITED
+        </td>
+        <td width=3D"179" height=3D"72" style=3D"border-bottom:1px solid #ccc">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZHYXJtaW4tRm9yZXJ1bm5lci0yMjAtS=
+FJNJTJGcCUyRlRFLUdFLUZPMjIwLU5TMS1QVSUzRm9mZmVyJTNENDAwMDYzODIwOSUyNnV0bV9z=
+b3VyY2UlM0ROb3ZlbSUyNnV0bV9tZWRpdW0lM0RBZmlsaWFjamElMjZ1dG1fY2FtcGFpZ24lM0R=
+Ob3ZlbV9hZmlsaWFjamF8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV0V6TmpGak=
+16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklESXdNVFVnT=
+VRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjIxOE1TNW9k=
+V2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D" style=3D"float:left"><img src=3D"http:/=
+/api.behavioralmailing.com/creations/42785176860/remintrex_btn.png"  alt=3D=
+"" border=3D"0" style=3D"float:left;"></a></td>
+    </tr>
+    <tr>
+        <td rowspan=3D"2" width=3D"119" height=3D"199">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZTb255LVhwZXJpYS1aMSUyRnAlMkZUR=
+S1TRS1YUEVJMS1QTDEtQkwlM0ZvZmZlciUzRDQwMDA1ODk0MjklMjZ1dG1fc291cmNlJTNETm92=
+ZW0lMjZ1dG1fbWVkaXVtJTNEQWZpbGlhY2phJTI2dXRtX2NhbXBhaWduJTNETm92ZW1fYWZpbGl=
+hY2phfE9XUTFNR1poWWpneU9EQXhabUk1TlRoak1qWTFOVEV5TldFek5qRmpNelJBYkc5allXeG=
+9iM04wTG14dlkyRnNaRzl0WVdsdWZGUjFaU3dnTWpJZ1JHVmpJREl3TVRVZ01UazZNRFE2TXpVZ=
+0t6QXhNREI4WVhacGRIVnphSGx1YzJ0NWFVQm5iV0ZwYkM1amIyMThNUzVvZFdkdmJuTnZiSFYw=
+YVc5dWN5NXpiWFJ3" style=3D"float:left"><img src=3D"http://nowy.play.pl/medi=
+as/sys_master/images/h31/hb7/8807347388446.png" width=3D"90"  alt=3D"" bord=
+er=3D"0" style=3D"float:left;"></a></td>
+        <td colspan=3D"2" width=3D"481" height=3D"127">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZTb255LVhwZXJpYS1aMSUyRnAlMkZUR=
+S1TRS1YUEVJMS1QTDEtQkwlM0ZvZmZlciUzRDQwMDA1ODk0MjklMjZ1dG1fc291cmNlJTNETm92=
+ZW0lMjZ1dG1fbWVkaXVtJTNEQWZpbGlhY2phJTI2dXRtX2NhbXBhaWduJTNETm92ZW1fYWZpbGl=
+hY2phfE9XUTFNR1poWWpneU9EQXhabUk1TlRoak1qWTFOVEV5TldFek5qRmpNelJBYkc5allXeG=
+9iM04wTG14dlkyRnNaRzl0WVdsdWZGUjFaU3dnTWpJZ1JHVmpJREl3TVRVZ01UazZNRFE2TXpVZ=
+0t6QXhNREI4WVhacGRIVnphSGx1YzJ0NWFVQm5iV0ZwYkM1amIyMThNUzVvZFdkdmJuTnZiSFYw=
+YVc5dWN5NXpiWFJ3" style=3D"float:left;text-decoration: none;color:#000;">
+                <span style=3D"margin-left:13px;margin-top:8px;font-size: 3=
+2px;color:#5a398a;font-family: Arial;text-decoration: none;float: left;font=
+-weight:bold;">Sony Xperia Z1<br>za 79.99 z=C5=82</span>
+            </a>
+        </td>
+    </tr>
+    <tr>
+        <td width=3D"303" height=3D"72" style=3D"font-size: 15px; color:#333;font=
+-family: Arial;">
+            SIM FORMU=C5=81A RODZINA UNLIMITED
+        </td>
+        <td width=3D"179" height=3D"72">
+            <a href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR0cDovL=
+3NzcC5odWdvbnNvbHV0aW9ucy5jb20vdHJhY2svcmVkaXJlY3QvP3U9NTY0ODM5Mjgmbz0zNDEz=
+MjEmYj0yNiZyPWh0dHAlM0ElMkYlMkZoby5ub3ZlbS5wbCUyRmFmZl9jJTNGb2ZmZXJfaWQlM0Q=
+yMDYlMjZ1cmxfaWQlM0QzNjYyJTI2YWZmX2lkJTNEMjc0NzQlMjZhZmZfc3ViJTNEaHR0cCUzQS=
+UyRiUyRm5vd3kucGxheS5wbCUyRnVyemFkemVuaWElMkZTb255LVhwZXJpYS1aMSUyRnAlMkZUR=
+S1TRS1YUEVJMS1QTDEtQkwlM0ZvZmZlciUzRDQwMDA1ODk0MjklMjZ1dG1fc291cmNlJTNETm92=
+ZW0lMjZ1dG1fbWVkaXVtJTNEQWZpbGlhY2phJTI2dXRtX2NhbXBhaWduJTNETm92ZW1fYWZpbGl=
+hY2phfE9XUTFNR1poWWpneU9EQXhabUk1TlRoak1qWTFOVEV5TldFek5qRmpNelJBYkc5allXeG=
+9iM04wTG14dlkyRnNaRzl0WVdsdWZGUjFaU3dnTWpJZ1JHVmpJREl3TVRVZ01UazZNRFE2TXpVZ=
+0t6QXhNREI4WVhacGRIVnphSGx1YzJ0NWFVQm5iV0ZwYkM1amIyMThNUzVvZFdkdmJuTnZiSFYw=
+YVc5dWN5NXpiWFJ3" style=3D"float:left"><img src=3D"http://api.behavioralmai=
+ling.com/creations/42785176860/remintrex_btn.png"  alt=3D"" border=3D"0" st=
+yle=3D"float:left;display:block"></a></td>
+    </tr>
+    <tr>
+        <td colspan=3D"3">
+            <img src=3D"http://api.behavioralmailing.com/creations/42785176860/foote=
+r.jpg" style=3D"display:block">
+        </td>
+    </tr>
+</table>
+<img src=3D"http://api.behavioralmailing.com/creations/42785176860/remintre=
+x_01.png" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"visibilit=
+y:hidden;">
+</center>
+<img src=3D"http://hugonsolutions.emaillabs.info.pl/open/?ot=3DOWQ1MGZhYjgy=
+ODAxZmI5NThjMjY1NTEyNWEzNjFjMzRAbG9jYWxob3N0LmxvY2FsZG9tYWlufFR1ZSwgMjIgRGV=
+jIDIwMTUgMTk6MDQ6MzUgKzAxMDB8YXZpdHVzaHluc2t5aUBnbWFpbC5jb218MS5odWdvbnNvbH=
+V0aW9ucy5zbXRw" alt=3D"" width=3D"1" height=3D"1" border=3D"0" style=3D"hei=
+ght:1px;width:1px;border-width:0;margin-top:0;margin-bottom:0;margin-right:=
+0;margin-left:0;padding-top:0;padding-bottom:0;padding-right:0;padding-left=
+:0;"/><div style=3D"width:1px;height:1px;background:url('http://hugonsoluti=
+ons.emaillabs.info.pl/open/?ot=3DOWQ1MGZhYjgyODAxZmI5NThjMjY1NTEyNWEzNjFjMz=
+RAbG9jYWxob3N0LmxvY2FsZG9tYWlufFR1ZSwgMjIgRGVjIDIwMTUgMTk6MDQ6MzUgKzAxMDB8Y=
+XZpdHVzaHluc2t5aUBnbWFpbC5jb218MS5odWdvbnNvbHV0aW9ucy5zbXRw')"></div></body>
+
+</html>
+
+<!--STOPKA KREACJI-->
+<table width=3D"600" cellpading=3D"0" cellspacing=3D"0" align=3D"center" st=
+yle=3D"font-family: Arial"><tr><td height=3D"20"> </td></tr><tr><td style=
+=3D"font-family:Arial; font-size:11px; color:#aaaaaa; text-align:center;" i=
+d=3D"creationFooter">Wys=C5=82ano na zlecenie P4 sp. z o.o. (ul. Ta=C5=9Bmo=
+wa 7, 02-677 Warszawa, ok@pomocplay.pl, www. play .pl).</td></tr><tr><td he=
+ight=3D"20"> </td></tr><tr><td><p style=3D"text-align:center;font-family:Ar=
+ial"><font size=3D"1" face=3D"Verdana, Arial, Helvetica, sans-serif" color=
+=3D"#000000">Ta wiadomo=C5=9B=C4=87 zosta=C5=82a wys=C5=82ana w zwi=C4=85zk=
+u z rozpocz=C4=99ciem procesu elektronicznej obs=C5=82ugi klienta przez Zle=
+caj=C4=85cego na jego stronie internetowej. Administratorem danych osobowyc=
+h jest Zlecaj=C4=85cy.</font></p> <p style=3D"text-align:center;font-family=
+:Arial"><font size=3D"1" face=3D"Verdana, Arial, Helvetica, sans-serif" col=
+or=3D"#000000">Aby zablokowa=C4=87 kolejne wysy=C5=82ki kliknij: <a target=
+=3D"_blank" href=3D"http://hugonsolutions.emaillabs.info.pl/click/?lt=3DaHR=
+0cDovL3NzcC5odWdvbnNvbHV0aW9ucy5jb20vc3Vic2NyaXB0aW9uL3Vuc3Vic2NyaWJlLz91PT=
+U2NDgzOTI4Jm89MzQxMzIxJmI9MjZ8T1dRMU1HWmhZamd5T0RBeFptSTVOVGhqTWpZMU5URXlOV=
+0V6TmpGak16UkFiRzlqWVd4b2IzTjBMbXh2WTJGc1pHOXRZV2x1ZkZSMVpTd2dNaklnUkdWaklE=
+SXdNVFVnTVRrNk1EUTZNelVnS3pBeE1EQjhZWFpwZEhWemFIbHVjMnQ1YVVCbmJXRnBiQzVqYjI=
+xOE1TNW9kV2R2Ym5OdmJIVjBhVzl1Y3k1emJYUnc%3D">tutaj</a><img src=3D"http://ss=
+p.hugonsolutions.com/track/pixel/?u=3D56483928&o=3D341321&b=3D26"></font></=
+p></td></tr></table>
+
+
+--b1_9d50fab82801fb958c2655125a361c34--
