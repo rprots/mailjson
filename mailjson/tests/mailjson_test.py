@@ -7,7 +7,7 @@ from email import message_from_file
 from pkg_resources import resource_stream
 
 from mailjson import MailJson
-from mailjson.mailjson import _get_encoding, decode_value
+from mailjson.mailjson import decode_value
 from nose.tools import nottest
 from mx.Tools.mxTools.hack import seq
 
@@ -26,11 +26,11 @@ class TestMailJson(unittest.TestCase):
         """Test MailJson.parse()"""
         mj = MailJson(load_mail("1.txt"))
         data = mj.parse_mail()
-        self.assertEqual(data['to'][0]['email'], "xxx-bounces@lists.xxx.com")
-        self.assertEqual(data['to'][0]['name'], "")
-        self.assertEqual(data['from'][0]['email'], "MAILER-DAEMON@AOL.com")
-        self.assertEqual(data['from'][0]['name'], "Mail Delivery Subsystem")
-        self.assertEqual(data['subject'], "Mail Delivery Problem")
+        self.assertEqual(data['parsed_headers']['to'][0]['email'], "xxx-bounces@lists.xxx.com")
+        self.assertEqual(data['parsed_headers']['to'][0]['name'], "")
+        self.assertEqual(data['parsed_headers']['from'][0]['email'], "MAILER-DAEMON@AOL.com")
+        self.assertEqual(data['parsed_headers']['from'][0]['name'], "Mail Delivery Subsystem")
+        self.assertEqual(data['parsed_headers']['subject'], "Mail Delivery Problem")
         self.assertNotEqual(data['parts'], [])
         self.assertEqual(data['attachments'], [])
 
@@ -38,7 +38,7 @@ class TestMailJson(unittest.TestCase):
         """Test MailJson.parse() test utf-8 encoded 'From' """
         mj = MailJson(load_mail("2.txt"))
         data = mj.parse_mail()
-        self.assertEqual(data['from'][0]['name'], "play.pl")
+        self.assertEqual(data['parsed_headers']['from'][0]['name'], "play.pl")
 
     def test_parse_with_utf8_subject(self):
         """Test MailJson.parse() test utf-8 encoded 'Subject' """
@@ -48,7 +48,7 @@ class TestMailJson(unittest.TestCase):
                 "\xd0\xb5 \xd0\xb4\xd0\xbe\xd1\x81\xd1\x82\xd0\xb0\xd0\xb2"
                 "\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xbe. Mail failure.")
         data = mj.parse_mail()
-        self.assertEqual(data['subject'], subj)
+        self.assertEqual(data['parsed_headers']['subject'], subj)
 
     def test_parse_with_subject_encoding(self):
         """Test MailJson.parse() test 'Subject' encoding """
@@ -58,12 +58,12 @@ class TestMailJson(unittest.TestCase):
                 "\xd0\xb5 \xd0\xb4\xd0\xbe\xd1\x81\xd1\x82\xd0\xb0\xd0\xb2"
                 "\xd0\xbb\xd0\xb5\xd0\xbd\xd0\xbe. Mail failure.")
         data = mj.parse_mail()
-        self.assertEqual(data['subject'], subj)
+        self.assertEqual(data['parsed_headers']['subject'], subj)
 
         mj = MailJson(load_mail("4.txt"))
         subj = 'Sie haben die Mailingliste "newsletter" abbestellt'
         data = mj.parse_mail()
-        self.assertEqual(data['subject'], subj)
+        self.assertEqual(data['parsed_headers']['subject'], subj)
 
     def test__fix_encoded_subject(self):
         """Test MailJson._fix_encoded_subject()"""
@@ -147,6 +147,6 @@ class TestMailJson(unittest.TestCase):
         mj.include_headers = ("to",)
         data = mj.parse_mail()
         self.assertEqual(data['headers']['to'], '<vitush.dev@gmail.com>')
-        self.assertEqual(data['to'][0]['email'], "vitush.dev@gmail.com")
+        self.assertEqual(data['parsed_headers']['to'][0]['email'], "vitush.dev@gmail.com")
         with self.assertRaises(KeyError):
             f = data['headers']['from']

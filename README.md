@@ -19,7 +19,7 @@ data = mj.parse_mail()
 ```python
 from MailJson import MailJson
 m = <email.message.Message object>
-mj = MailJson(m)
+mj = MailJson(m, encoding="utf-8")
 headers = ("subject", "from", "to", "date", "message-id", "date")
 mj.include_headers=headers     # In case you are only interested in specific headers, not all.
 mj.include_parts=False         # In case you are not interested in parsing mail parts.
@@ -32,20 +32,21 @@ data = mj.parse_mail()
 
 ```yaml
 json:
+  encoding: "utf-8"
   headers:
     header_key1: value
     header_key2: value
-  subject: "The email subject as utf-8 string"
-  datetime: "2015-03-17 17:48:06"
-  encoding: "utf-8"
-  from:
-    - { name: "Sender Name", email: "sender@email.com" }
-  to:
-    - { name: "Recipient Name", email: "recipient@email.com" }
-    - { name: "Recipient Name 2", email: "recipient2@email.com" }
-  cc:
-    - { name: "Recipient Name", email: "recipient@email.com" }
-    - { name: "Recipient Name 2", email: "recipient2@email.com" }
+  parsed_headers:
+    subject: "The email subject as utf-8 string"
+    date: "2015-03-17 17:48:06"
+    from:
+      - { name: "Sender Name", email: "sender@email.com" }
+    to:
+      - { name: "Recipient Name", email: "recipient@email.com" }
+      - { name: "Recipient Name 2", email: "recipient2@email.com" }
+    cc:
+      - { name: "Recipient Name", email: "recipient@email.com" }
+      - { name: "Recipient Name 2", email: "recipient2@email.com" }
   parts:
     - { content_type: "text/plain", content: "body of this part", "headers": { "header_key1": value, "header_key2": value } }
     - { content_type: "text/html", content: "body of this part", "headers": { "header_key1": value, "header_key2": value } }
@@ -55,6 +56,10 @@ json:
 ```
 
 # History
+
+Version 0.2.0:
+
+- 2016-01-03: Added 'parsed_headers' section. Added encoding support. Improved filters.
 
 Version 0.1.1:
 

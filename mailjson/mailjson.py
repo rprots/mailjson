@@ -52,17 +52,10 @@ BEGIN_TAB_RE = re.compile(r"^\t+", re.M)
 BEGIN_SPACE_RE = re.compile(r"^\s+", re.M)
 
 
-def _get_encoding(string):
-    """Get string encoding"""
-    if isinstance(string, str):
-        return 'ascii'
-    else:
-        return chardet.detect(string)['encoding']
-
 def decode_value(header_value, encoding):
     """Decode header value"""
     encoding = encoding.lower() if encoding else "ascii"
-    if _get_encoding(header_value) == encoding:
+    if chardet.detect(header_value)['encoding'] == encoding:
         # Do not encode second time.
         return header_value
     header_value = unicode(header_value, encoding).strip().strip("\t")
@@ -72,8 +65,8 @@ def decode_value(header_value, encoding):
 class MailJson(object):
     """Class to convert between json and mail format"""
 
-    def __init__(self, data=None):
-        self.encoding = "utf-8"
+    def __init__(self, data=None, encoding=None):
+        self.encoding = encoding
         self.include_headers = ()
         self.include_parts = True
         self.include_attachments = True
@@ -92,7 +85,7 @@ class MailJson(object):
                 raise TypeError('Unknown data-type passed')
 
     @staticmethod
-    def _decode_headers(headers):
+    def _decode_headers(headers, encoding=None):
         """Decode headers"""
         if type(headers) is not list:
             headers = [headers]
@@ -101,8 +94,12 @@ class MailJson(object):
         for header in headers:
             header = email_header.decode_header(header)
             h_ret = []
-            for (value, encoding) in header:
-                decoded_hv = decode_value(value, encoding)
+            for (value, h_encoding) in header:
+                decoded_hv = decode_value(value, h_encoding)
+                if encoding:
+                    enc = chardet.detect(value)['encoding']
+                    decoded_hv = decoded_hv.decode(enc).encode(encoding)
+
                 h_ret.append(decoded_hv)
             if len(h_ret) == 1:
                 h_ret = h_ret[0]
@@ -113,14 +110,13 @@ class MailJson(object):
         """Get headers from message part"""
         # raw headers
         headers = {}
+        include_headers =  self.include_headers
         for h_key in part.keys():
-            if self.include_headers and \
-                not h_key.lower() in self.include_headers:
+            if include_headers and not h_key.lower() in include_headers:
                 continue
             h_key = h_key.lower()
             h_value = part.get_all(h_key)
-            h_value = self._decode_headers(h_value)
-
+            h_value = self._decode_headers(h_value, self.encoding)
             headers[h_key] = h_value[0] if len(h_value) == 1 else h_value
         return headers
 
@@ -199,6 +195,11 @@ class MailJson(object):
             name = str(v_list[0][0].strip())
             address = str(v_list[1][0].strip())
             address = address.replace("<", "").replace(">", "").strip()
+            if self.encoding:
+                enc = chardet.detect(name)['encoding']
+                if not enc:
+                    enc = 'ascii'
+                name = name.decode(enc).encode(self.encoding)
             return (name, address)
         else:
             entry = v_list[0][0].strip()
@@ -222,6 +223,12 @@ class MailJson(object):
             address = self._extract_email(address)
             if address:
                 address = address.strip()
+
+            if self.encoding:
+                enc = chardet.detect(name)['encoding']
+                if not enc:
+                    enc = 'ascii'
+                name = name.decode(enc).encode(self.encoding)
 
             return (name, address)
 
@@ -268,20 +275,42 @@ class MailJson(object):
         # RFC 2046, $4.1.2 says charsets are not case sensitive
         return charset.lower()
 
+    def _parse_headers(self):
+        """ Parse mail headers (include filters)"""
+        self.include_headers = [x.lower() for x in self.include_headers]
+
+        all_headers = self._get_part_headers(self.mail)
+        headers = {}
+        # Filter in needed headers
+        for (header, value) in all_headers.items():
+            if self.include_headers and \
+                not header.lower() in self.include_headers:
+                    continue
+            else:
+                headers[header] = value
+
+        # Original headers
+        self.json_data["headers"] = headers
+
+        # Parsed headers
+        self.json_data["parsed_headers"] = {}
+        if 'date' in headers:
+            self.json_data["parsed_headers"]["date"] = self._parse_date(
+                    headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
+
+        if 'subject' in headers:
+            self.json_data["parsed_headers"]["subject"] = \
+                    self._fix_encoded_subject(headers.get("subject", None))
+
+        for header in ("from", "to", "cc", "bcc"):
+            if header in headers:
+                self.json_data["parsed_headers"][header] = \
+                    self._parse_recipients(header)
+
     def parse_mail(self):
         """Parse mail"""
 
-        headers = self._get_part_headers(self.mail)
-        self.json_data["headers"] = headers
-        self.json_data["datetime"] = self._parse_date(
-                headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
-        self.json_data["subject"] = self._fix_encoded_subject(
-                headers.get("subject", None))
-
-        self.json_data["from"] = self._parse_recipients("from")
-        self.json_data["to"] = self._parse_recipients("to")
-        self.json_data["cc"] = self._parse_recipients("cc")
-        self.json_data["bcc"] = self._parse_recipients("bcc")
+        self._parse_headers()
 
         attachments = []
         parts = []
@@ -311,12 +340,18 @@ class MailJson(object):
                     # We are not interested in parsed parts.
                     continue
                 try:
-                    charset = self._get_content_charset(part, "utf-8").decode()
+                    payload = part.get_payload(decode=1)
+                    if self.encoding:
+                        charset = self._get_content_charset(part,
+                                                            "utf-8").decode()
+                        part_content = unicode(payload,
+                                               charset,
+                                               "ignore").encode(self.encoding)
+                    else:
+                        part_content = payload
+
                     json_part = {"content_type": part.get_content_type(),
-                                 "content": unicode(part.get_payload(decode=1),
-                                                    charset,
-                                                    "ignore"
-                                                    ).encode(self.encoding),
+                                 "content": part_content,
                                  "headers": self._get_part_headers(part)}
                     parts.append(json_part)
                     self.raw_parts.append(part)
@@ -329,6 +364,7 @@ class MailJson(object):
             self.json_data["attachments"] = attachments
         if self.include_parts:
             self.json_data["parts"] = parts
-        self.json_data["encoding"] = self.encoding
+        if self.encoding:
+            self.json_data["encoding"] = self.encoding
 
         return self.json_data
