@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
-from .mailjson import __version__ as version
+from mailjson import __version__ as version
 
 CLASSIFIERS = """\
 Development Status :: 4 - Beta
