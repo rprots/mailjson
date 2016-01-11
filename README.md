@@ -57,6 +57,10 @@ json:
 
 # History
 
+Version 0.2.2:
+
+- 2016-01-11: Changed the way how package __version__ is defined.
+
 Version 0.2.0:
 
 - 2016-01-03: Added 'parsed_headers' section. Added encoding support. Improved filters.
