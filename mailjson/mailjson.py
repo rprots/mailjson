@@ -98,6 +98,8 @@ class MailJson(object):
                 decoded_hv = decode_value(value, h_encoding)
                 if encoding:
                     enc = chardet.detect(value)['encoding']
+                    if not enc:
+                        enc = 'ascii'
                     decoded_hv = decoded_hv.decode(enc).encode(encoding)
 
                 h_ret.append(decoded_hv)
