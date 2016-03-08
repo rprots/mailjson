@@ -304,6 +304,11 @@ class MailJson(object):
             self.json_data["parsed_headers"]["subject"] = \
                     self._fix_encoded_subject(headers.get("subject", None))
 
+        if 'message-id' in headers:
+            m_id = headers.get("message-id", '')
+            m_id = str(m_id).replace('<','').replace('>','')
+            self.json_data["parsed_headers"]["message-id"] = m_id
+
         for header in ("from", "to", "cc", "bcc"):
             if header in headers:
                 self.json_data["parsed_headers"][header] = \

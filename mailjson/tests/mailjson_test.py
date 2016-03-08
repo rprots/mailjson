@@ -1,6 +1,5 @@
 """Test MailJson."""
 import unittest
-#from mock import patch, MagicMock, Mock
 
 from contextlib import closing
 from email import message_from_file
@@ -31,6 +30,7 @@ class TestMailJson(unittest.TestCase):
         self.assertEqual(data['parsed_headers']['from'][0]['email'], "MAILER-DAEMON@AOL.com")
         self.assertEqual(data['parsed_headers']['from'][0]['name'], "Mail Delivery Subsystem")
         self.assertEqual(data['parsed_headers']['subject'], "Mail Delivery Problem")
+        self.assertEqual(data['parsed_headers']['message-id'], "200907171908.7d834a6104831b4@omr-d25.mx.aol.com")
         self.assertNotEqual(data['parts'], [])
         self.assertEqual(data['attachments'], [])
 
