@@ -123,13 +123,13 @@ class MailJson(object):
         return headers
 
     @staticmethod
-    def _parse_date(string):
+    def _parse_date(data):
         """Parse date"""
-        if string is None:
+        if data is None:
             return datetime.datetime.now()
-        if type(string) is list:
-            string = str(string[0], 'ascii')        
-        time_tuple = email.utils.parsedate_tz(string)
+        if type(data) is list:
+            data = str(data[0], 'ascii')
+        time_tuple = email.utils.parsedate_tz(data)
         if time_tuple is None:
             return datetime.datetime.now()
         timestamp = email.utils.mktime_tz(time_tuple)
