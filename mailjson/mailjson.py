@@ -128,7 +128,7 @@ class MailJson(object):
         if data is None:
             return datetime.datetime.now()
         if type(data) is list:
-            data = str(data[0], 'ascii')
+            data = str(data[0])
         time_tuple = email.utils.parsedate_tz(data)
         if time_tuple is None:
             return datetime.datetime.now()
