@@ -169,6 +169,8 @@ class MailJson(object):
     @staticmethod
     def _extract_email(string):
         """Extract email address from string"""
+        if not string:
+            return
         ret = EMAIL_EXTRACT_RE.findall(string)
         if len(ret) < 1:
             parts = string.split(" ")
@@ -244,7 +246,8 @@ class MailJson(object):
             return []
         for rcpt in rcpt_list:
             (name, address) = self._extract_recipient(rcpt)
-            ret.append({"name": name, "email": address})
+            if address:
+                ret.append({"name": name, "email": address})
         return ret
 
     @staticmethod
