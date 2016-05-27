@@ -316,8 +316,11 @@ class MailJson(object):
 
         for header in ("from", "to", "cc", "bcc"):
             if header in headers:
-                self.json_data["parsed_headers"][header] = \
-                    self._parse_recipients(header)
+                data = self._parse_recipients(header)
+                if header == "from":
+                    # From is always only one, do not need array here.
+                    data = data[0]
+                self.json_data["parsed_headers"][header] = data
 
     def parse_mail(self):
         """Parse mail"""
