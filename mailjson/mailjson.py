@@ -44,7 +44,7 @@ EMAIL_RE = re.compile(
         r'(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$', re.IGNORECASE)
 
 EMAIL_EXTRACT_RE = re.compile(
-    r"<(([.0-9a-z_+-=]+)@(([0-9a-z-]+\.)+[0-9a-z]{2,9}))>", re.M | re.S | re.I)
+    r"(([.0-9a-z_+-=]+)@(([0-9a-z-]+\.?)+[0-9a-z]{2,9}))", re.M | re.S | re.I)
 FILENAME_RE = re.compile(
     r"filename=\"(.+)\"|filename=([^;\n\r\"\']+)", re.I | re.S)
 
