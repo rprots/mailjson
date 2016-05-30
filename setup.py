@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 
 from distutils.core import setup
-from mailjson import __version__ as version
 
 CLASSIFIERS = """\
 Development Status :: 4 - Beta
@@ -15,7 +14,7 @@ Operating System :: Unix
 """
 
 setup(name='mailjson',
-      version=version,
+      version= '0.3.1',
       description='Mail to JSON converter',
       author='vitush',
       author_email='vitush.dev@gmail.com',
