@@ -7,15 +7,15 @@
 #  This code is released under MIT license.
 # ---------------------------------------------------------------------
 
-import base64
-import chardet
-import datetime
-import email
 import re
 import sys
+import datetime
+import email
+import base64
+import chardet
 
 
-##### Python 2.7 compatibility.
+# Python 2.7 compatibility.
 if sys.version_info < (3,):
     from email import Header as email_header
 
@@ -36,12 +36,12 @@ EMAIL_RE = re.compile(
     r"(^[-!#$%&'*+/=?^_`{}|~0-9A-Z]+(\.[-!#$%&'*+/=?^_`{}|~0-9A-Z]+)*"
     # quoted-string, see also http://tools.ietf.org/html/rfc2822#section-3.2.5
     r'|^"([\001-\010\013\014\016-\037!#-\[\]-\177]'
-        r'|\\[\001-\011\013\014\016-\177])*"'
+    r'|\\[\001-\011\013\014\016-\177])*"'
     # domain part
     r')@((?:[A-Z0-9](?:[A-Z0-9-]{0,61}[A-Z0-9])?\.)+'
-        r'(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)'
+    r'(?:[A-Z]{2,6}\.?|[A-Z0-9-]{2,}\.?)$)'
     r'|\[(25[0-5]|2[0-4]\d|[0-1]?\d?\d)'
-        r'(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$', re.IGNORECASE)
+    r'(\.(25[0-5]|2[0-4]\d|[0-1]?\d?\d)){3}\]$', re.IGNORECASE)
 
 EMAIL_EXTRACT_RE = re.compile(
     r"(([.0-9a-z_+-=]+)@(([0-9a-z-]+\.?)+[0-9a-z]{2,9}))", re.M | re.S | re.I)
@@ -80,7 +80,6 @@ class MailJson(object):
             elif type(data) is dict:
                 raise NotImplementedError('Conversion from JSON to mail,'
                                           ' is not yet implemented')
-                # TODO: Convert json to email.message.Message object
             else:
                 raise TypeError('Unknown data-type passed')
 
@@ -112,9 +111,9 @@ class MailJson(object):
         """Get headers from message part"""
         # raw headers
         headers = {}
-        include_headers =  self.include_headers
+        include_headers = self.include_headers
         for h_key in part.keys():
-            if include_headers and not h_key.lower() in include_headers:
+            if include_headers and h_key.lower() not in include_headers:
                 continue
             h_key = h_key.lower()
             h_value = part.get_all(h_key)
@@ -166,22 +165,6 @@ class MailJson(object):
                 new_subject = "%s\n " % new_subject
         return new_subject
 
-    @staticmethod
-    def _extract_email(string):
-        """Extract email address from string"""
-        if not string:
-            return
-        ret = EMAIL_EXTRACT_RE.findall(string)
-        if len(ret) < 1:
-            parts = string.split(" ")
-            for string_part in parts:
-                string_part = string_part.strip()
-                if EMAIL_RE.match(string_part):
-                    return string_part
-            return None
-        else:
-            return ret[0][0]
-
     def _get_recipient_list(self, header):
         """Get list of recipients from header by name"""
         rcpts = self.mail.get_all(header, None)
@@ -209,24 +192,11 @@ class MailJson(object):
             return (name, address)
         else:
             entry = v_list[0][0].strip()
-            if EMAIL_RE.match(entry):
-                address = entry
-                entry = ""
-            else:
-                address = self._extract_email(entry)
-                entry = entry.replace("<%s>" % address, "")
-                entry = entry.strip()
-                if address and entry.find(address) != -1:
-                    entry = entry.replace(address, "").strip()
-            # If all else has failed
-            if entry and address is None:
-                e_split = entry.split(" ")
-                address = e_split[-1].replace("<", "").replace(">", "")
-                entry = " ".join(e_split[:-1])
+            parsed_addr = email.utils.parseaddr(entry)
 
-            #Remove " and ' around name.
-            name = entry.replace('"', '').replace("'", "").strip()
-            address = self._extract_email(address)
+            name = parsed_addr[0]
+            address = parsed_addr[1]
+
             if address:
                 address = address.strip()
 
@@ -291,8 +261,8 @@ class MailJson(object):
         # Filter in needed headers
         for (header, value) in all_headers.items():
             if self.include_headers and \
-                not header.lower() in self.include_headers:
-                    continue
+                    header.lower() not in self.include_headers:
+                continue
             else:
                 headers[header] = value
 
@@ -303,7 +273,7 @@ class MailJson(object):
         self.json_data["parsed_headers"] = {}
         if 'date' in headers:
             self.json_data["parsed_headers"]["date"] = self._parse_date(
-                    headers.get("date", None)).strftime("%Y-%m-%d %H:%M:%S")
+                headers.get("Date", None))
 
         if 'subject' in headers:
             self.json_data["parsed_headers"]["subject"] = \
@@ -311,7 +281,7 @@ class MailJson(object):
 
         if 'message-id' in headers:
             m_id = headers.get("message-id", '')
-            m_id = str(m_id).replace('<','').replace('>','')
+            m_id = str(m_id).replace('<', '').replace('>', '')
             self.json_data["parsed_headers"]["message-id"] = m_id
 
         for header in ("from", "to", "cc", "bcc"):
@@ -322,11 +292,41 @@ class MailJson(object):
                     data = data[0]
                 self.json_data["parsed_headers"][header] = data
 
+    @staticmethod
+    def _parse_attachment(part):
+        """Parse message attachment"""
+        content_disposition = part.get("Content-Disposition", None)
+        found = FILENAME_RE.findall(content_disposition)
+        if found:
+            filename = sorted(found[0])[1]
+        else:
+            filename = "undefined"
+        return {"filename": filename,
+                "content": base64.b64encode(part.get_payload(decode=True)),
+                "content_type": part.get_content_type()}
+
+    def _parse_parts(self, part):
+        """Parse message part"""
+        try:
+            payload = part.get_payload(decode=1)
+            if self.encoding:
+                charset = self._get_content_charset(part, "utf-8").decode()
+                content = unicode(payload,
+                                  charset,
+                                  "ignore").encode(self.encoding)
+            else:
+                content = payload
+            return {"content_type": part.get_content_type(),
+                    "content": content,
+                    "headers": self._get_part_headers(part)}
+        except LookupError:
+            # Sometimes an encoding isn't recognized.
+            # Not much to be done.
+            pass
+
     def parse_mail(self):
         """Parse mail"""
-
         self._parse_headers()
-
         attachments = []
         parts = []
         for part in self.mail.walk():
@@ -336,44 +336,16 @@ class MailJson(object):
             content_disposition = part.get("Content-Disposition", None)
             if content_disposition:
                 # We have attachment
-                if not self.include_attachments:
-                    # We are not interested in parsed attachments.
-                    continue
-                found = FILENAME_RE.findall(content_disposition)
-                if found:
-                    filename = sorted(found[0])[1]
-                else:
-                    filename = "undefined"
-
-                json_attachment = {"filename": filename,
-                                   "content": base64.b64encode(
-                                                part.get_payload(decode=True)),
-                                   "content_type": part.get_content_type()}
-                attachments.append(json_attachment)
+                if self.include_attachments:
+                    # We are interested in parsed attachments.
+                    attachments.append(self._parse_attachment(part))
             else:
-                if not self.include_parts:
-                    # We are not interested in parsed parts.
-                    continue
-                try:
-                    payload = part.get_payload(decode=1)
-                    if self.encoding:
-                        charset = self._get_content_charset(part,
-                                                            "utf-8").decode()
-                        part_content = unicode(payload,
-                                               charset,
-                                               "ignore").encode(self.encoding)
-                    else:
-                        part_content = payload
-
-                    json_part = {"content_type": part.get_content_type(),
-                                 "content": part_content,
-                                 "headers": self._get_part_headers(part)}
-                    parts.append(json_part)
-                    self.raw_parts.append(part)
-                except LookupError:
-                    # Sometimes an encoding isn't recognized.
-                    # Not much to be done.
-                    pass
+                if self.include_parts:
+                    # We are interested in parsed parts.
+                    json_part = self._parse_parts(part)
+                    if json_part:
+                        parts.append(json_part)
+                        self.raw_parts.append(part)
 
         if self.include_attachments:
             self.json_data["attachments"] = attachments
