@@ -273,7 +273,7 @@ class MailJson(object):
         self.json_data["parsed_headers"] = {}
         if 'date' in headers:
             self.json_data["parsed_headers"]["date"] = self._parse_date(
-                headers.get("Date", None))
+                headers.get("date", None))
 
         if 'subject' in headers:
             self.json_data["parsed_headers"]["subject"] = \
