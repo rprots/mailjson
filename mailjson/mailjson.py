@@ -132,7 +132,7 @@ class MailJson(object):
         if time_tuple is None:
             return datetime.datetime.now()
         timestamp = email.utils.mktime_tz(time_tuple)
-        date = datetime.datetime.fromtimestamp(timestamp)
+        date = datetime.datetime.utcfromtimestamp(timestamp)
         return date
 
     @staticmethod
