@@ -57,6 +57,10 @@ json:
 
 # History
 
+Version 1.4.8:
+
+- 2016-09-08: Changed version to 1.4.8 to be older then previous release. 
+
 Version 0.2.2:
 
 - 2016-01-11: Changed the way how package __version__ is defined.
